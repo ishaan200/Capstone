@@ -35,5 +35,5 @@ class Recommendation:
         temp['positive_percent']=temp.apply(lambda x: x['prediction']/sum(x), axis=1)
         final_list=temp.sort_values('positive_percent', ascending=False).iloc[:5,:].index
         return self.data[self.data.id.isin(final_list)][['id', 'brand',
-                              'categories', 'manufacturer', 'name']].drop_duplicates().to_html(index=False)
+                              'categories', 'manufacturer', 'name']].dropna().drop_duplicates().to_html(index=False)
     
